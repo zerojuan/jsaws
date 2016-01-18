@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+var JSAWS = require( '../lib/main.js' );
+var program = require( 'commander' );
+var shortid = require( 'shortid' );
+
+/**
+ * Init
+ * - creates initial files
+ */
+program
+  .version( JSAWS.version )
+  .command( 'init' )
+  .description( 'Initialize Lambda style function' )
+  .action( function( prg ) {
+    JSAWS.initialize( prg );
+  });
+
+/**
+ * Deploy
+ * - Deploys Lambda Function to AWS Lambda
+ */
+program
+  .version( JSAWS.version )
+  .command( 'deploy' )
+  .description( 'Deploy your application to Amazon Lambda' )
+  .action( function( prg ) {
+    JSAWS.deploy( prg );
+  });
+
+/**
+ * Test
+ * - Run mocha test on function
+ */
+program
+  .version( JSAWS.version )
+  .command( 'test' )
+  .description( 'Run unit test on current lambda function' )
+  .action( function( prg ) {
+    JSAWS.test( prg );
+  });
+
+program.parse( process.argv );
